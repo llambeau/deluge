@@ -180,7 +180,9 @@
     }
 
     function decodeServerResponse(result, callback, response) {
-        result = JSON.parse(result);
+        if (typeof result !== 'object') {
+            result = JSON.parse(result);
+        }
         if (result['error']) {
             callback(result['error'], null, response);
             return;
